@@ -1,8 +1,6 @@
 import { Container, Main, Section } from "@/components/craft";
 import React from "react";
 import ProfileCard from "@/components/home-page/profile-card";
-import LinksCard from "@/components/home-page/links-card";
-import ProjectPoster from "@/components/home-page/project-poster";
 import TechStackCard from "@/components/home-page/tech-stack-card";
 import ToolsBoard from "@/components/home-page/tools-board";
 import TerminalCard from "@/components/home-page/terminal-card";
@@ -36,20 +34,10 @@ const IndexPage = () => {
               </div>
             </div>
 
-            {/* Right column - Links + Project poster */}
-            <div className="order-2 md:order-3 flex flex-col gap-6 md:items-end">
-              <div className="w-full md:w-auto">
-                <LinksCard />
-              </div>
-              <div className="w-full md:w-auto">
-                <ProjectPoster />
-              </div>
+            {/* Right column - Terminal */}
+            <div className="order-2 md:order-3 w-full h-full flex flex-col">
+              <TerminalCard />
             </div>
-          </div>
-
-          {/* Interactive Terminal Section */}
-          <div className="mt-8 w-full">
-            <TerminalCard />
           </div>
         </Container>
       </Section>

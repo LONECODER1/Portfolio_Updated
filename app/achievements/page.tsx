@@ -1,11 +1,12 @@
 "use client";
 
 import React from "react";
+import Link from "next/link";
 import { Container, Section } from "@/components/craft";
 import { Badge } from "@/components/ui/badge";
 import { TechBadge } from "@/components/tech-badge";
 import { motion } from "framer-motion";
-import { Calendar, Trophy, Rocket, Code, Award } from "lucide-react";
+import { Calendar, Trophy, Rocket, Code, Award, ArrowLeft } from "lucide-react";
 import { achievementsData } from "@/constants";
 
 const getAchievementIcon = (type: string) => {
@@ -23,16 +24,25 @@ const getAchievementIcon = (type: string) => {
 
 export default function AchievementsPage() {
   return (
-    <Section className="min-h-screen bg-black text-white selection:bg-zinc-800 selection:text-white">
-      <Container className="max-w-4xl mx-auto px-6 py-12 sm:py-24">
+    <Section className="min-h-screen bg-[#030a06] text-white selection:bg-emerald-900 selection:text-white">
+      <Container className="max-w-4xl mx-auto px-6 py-8 sm:py-16">
+        {/* Back Link */}
+        <Link
+          href="/"
+          className="inline-flex items-center gap-2 text-emerald-400 hover:text-emerald-300 font-mono text-sm mb-8 transition-colors p-2 rounded-lg bg-emerald-950/40 border border-emerald-900/50 hover:bg-emerald-900/30"
+        >
+          <ArrowLeft size={16} />
+          <span>Back to Portfolio</span>
+        </Link>
+
         {/* Header */}
         <motion.div 
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           className="mb-16"
         >
-          <h1 className="text-4xl sm:text-5xl font-extrabold mb-4 tracking-tight uppercase">Achievements</h1>
-          <p className="text-zinc-400 text-lg">
+          <h1 className="text-4xl sm:text-5xl font-extrabold mb-4 tracking-tight text-emerald-50 font-mono">Achievements</h1>
+          <p className="text-emerald-700 text-lg font-mono">
             My achievements and recognitions across competitions and projects.
           </p>
         </motion.div>

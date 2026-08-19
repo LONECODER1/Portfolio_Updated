@@ -8,7 +8,6 @@ const routeConfig: Record<string, { section: string; color: string }> = {
   "/projects": { section: "projects", color: "text-sky-400" },
   "/achievements": { section: "achievements", color: "text-teal-400" },
   "/experience": { section: "experience", color: "text-emerald-400" },
-  "/blog": { section: "blog", color: "text-emerald-300" },
 };
 
 const Footer = () => {

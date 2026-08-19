@@ -15,7 +15,7 @@ export default function TerminalCard() {
   const [input, setInput] = useState("");
   const [history, setHistory] = useState<string[]>([]);
   const [historyIndex, setHistoryIndex] = useState<number>(-1);
-  const [matrixActive, setMatrixActive] = useState(false);
+  const [matrixActive, setMatrixActive] = useState(true);
   const [isExpanded, setIsExpanded] = useState(false);
 
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
@@ -113,7 +113,7 @@ export default function TerminalCard() {
         setMatrixActive((prev) => !prev);
         return (
           <span className="text-emerald-400 font-mono">
-            Matrix protocol {matrixActive ? "disabled." : "initiated."}
+            Matrix protocol toggled.
           </span>
         );
       },
@@ -231,22 +231,29 @@ export default function TerminalCard() {
 
   // Matrix canvas animation
   useEffect(() => {
-    if (!matrixActive || !canvasRef.current) return;
     const canvas = canvasRef.current;
+    if (!canvas) return;
     const ctx = canvas.getContext("2d");
     if (!ctx) return;
 
+    if (!matrixActive) {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      return;
+    }
+
     let animId: number;
+    let drops: number[] = [];
+    const fontSize = 13;
+    const chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789$+-*/=%#&_";
+
     const resizeCanvas = () => {
       canvas.width = canvas.parentElement?.offsetWidth || 600;
-      canvas.height = canvas.parentElement?.offsetHeight || 360;
+      canvas.height = canvas.parentElement?.offsetHeight || 380;
+      const columns = Math.floor(canvas.width / fontSize);
+      drops = Array(columns).fill(1);
     };
     resizeCanvas();
-
-    const chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789$+-*/=%#&_";
-    const fontSize = 13;
-    const columns = Math.floor(canvas.width / fontSize);
-    const drops = Array(columns).fill(1);
+    window.addEventListener("resize", resizeCanvas);
 
     let lastDraw = 0;
     const render = (time: number) => {
@@ -270,23 +277,26 @@ export default function TerminalCard() {
     };
 
     animId = requestAnimationFrame(render);
-    return () => cancelAnimationFrame(animId);
-  }, [matrixActive]);
+    return () => {
+      cancelAnimationFrame(animId);
+      window.removeEventListener("resize", resizeCanvas);
+    };
+  }, [matrixActive, isExpanded]);
 
   return (
     <div
-      className={`rounded-2xl bg-[#040d06] border border-emerald-900/60 shadow-2xl overflow-hidden relative glow-emerald flex flex-col transition-all duration-300 ${
-        isExpanded ? "h-[500px]" : "h-[360px]"
+      className={`rounded-2xl bg-[#040d06] border border-emerald-900/60 shadow-2xl overflow-hidden relative glow-emerald flex flex-col w-full transition-all duration-300 ${
+        isExpanded ? "min-h-[560px] h-full" : "min-h-[380px] h-full"
       }`}
       onClick={() => inputRef.current?.focus()}
     >
-      {/* Matrix Canvas Layer */}
-      {matrixActive && (
-        <canvas
-          ref={canvasRef}
-          className="absolute inset-0 pointer-events-none opacity-30 z-0"
-        />
-      )}
+      {/* Matrix Canvas Layer (Always mounted for smooth instant toggling) */}
+      <canvas
+        ref={canvasRef}
+        className={`absolute inset-0 pointer-events-none z-0 transition-opacity duration-300 ${
+          matrixActive ? "opacity-30 block" : "opacity-0 hidden"
+        }`}
+      />
 
       {/* Terminal Title Bar */}
       <div className="relative z-10 flex items-center justify-between px-4 py-3 bg-emerald-950/40 border-b border-emerald-900/60 backdrop-blur-md select-none">
@@ -302,7 +312,7 @@ export default function TerminalCard() {
           <div
             onClick={(e) => {
               e.stopPropagation();
-              setMatrixActive(!matrixActive);
+              setMatrixActive((prev) => !prev);
             }}
             title="Toggle Matrix Rain"
             className="w-3 h-3 rounded-full bg-yellow-500/80 border border-yellow-400/40 hover:opacity-100 opacity-80 cursor-pointer transition-opacity"
@@ -310,7 +320,7 @@ export default function TerminalCard() {
           <div
             onClick={(e) => {
               e.stopPropagation();
-              setIsExpanded(!isExpanded);
+              setIsExpanded((prev) => !prev);
             }}
             title="Toggle Size"
             className="w-3 h-3 rounded-full bg-emerald-500/80 border border-emerald-400/40 hover:opacity-100 opacity-80 cursor-pointer transition-opacity"
@@ -327,7 +337,7 @@ export default function TerminalCard() {
           <button
             onClick={(e) => {
               e.stopPropagation();
-              setMatrixActive(!matrixActive);
+              setMatrixActive((prev) => !prev);
             }}
             className={`p-1 rounded text-xs transition-colors ${
               matrixActive ? "text-emerald-400 bg-emerald-900/50" : "text-emerald-700 hover:text-emerald-400"
@@ -349,7 +359,7 @@ export default function TerminalCard() {
           <button
             onClick={(e) => {
               e.stopPropagation();
-              setIsExpanded(!isExpanded);
+              setIsExpanded((prev) => !prev);
             }}
             className="p-1 rounded text-emerald-700 hover:text-emerald-400 text-xs transition-colors"
             title="Toggle Size"

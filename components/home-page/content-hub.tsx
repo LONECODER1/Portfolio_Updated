@@ -20,19 +20,6 @@ const hubItems = [
     bg: "bg-teal-700",
     content: <AchievementsOnly />,
   },
-  {
-    key: "blog",
-    label: "Blog",
-    emoji: "📝",
-    bg: "bg-emerald-700",
-    content: (
-      <div className="p-4">
-        <h3 className="text-lg font-semibold text-emerald-50 mb-2 font-mono">Latest writings</h3>
-        <p className="text-emerald-700 text-sm mb-4 font-mono">Head over to the blog for recent posts and updates.</p>
-        <Link href="/blog" className="inline-block rounded-lg bg-emerald-400 text-black px-4 py-2 font-medium hover:bg-emerald-300 transition font-mono text-sm">Go to Blog</Link>
-      </div>
-    ),
-  },
 ];
 
 export default function ContentHub() {
@@ -42,7 +29,7 @@ export default function ContentHub() {
         DAILY<br />Tool<br />
         <span className="text-emerald-400 drop-shadow-[0_0_10px_rgba(52,211,153,0.5)]">STACK.</span>
       </div>
-      <div className="grid grid-cols-2 md:grid-cols-3 gap-3 md:gap-4">
+      <div className="grid grid-cols-2 gap-3 md:gap-4">
         {hubItems.map((item) => (
           <AlertDialog key={item.key}>
             <AlertDialogTrigger asChild>
@@ -64,8 +51,6 @@ export default function ContentHub() {
             </AlertDialogContent>
           </AlertDialog>
         ))}
-        {/* Blog extra rectangle within grid */}
-        <Link href="/blog" className="rounded-2xl bg-emerald-900/60 text-emerald-100 px-4 py-6 font-bold tracking-tight text-center hover:bg-emerald-800/60 transition border border-emerald-800/50 font-mono">Blog Posts</Link>
       </div>
       {/* Tools scroller at the bottom */}
       <div className="mt-4 overflow-x-auto">

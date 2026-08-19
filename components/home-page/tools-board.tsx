@@ -3,14 +3,18 @@
 
 import React from "react";
 import Link from "next/link";
-import { FileText, Monitor } from "lucide-react";
-import { siteConfig } from "@/data/siteConfig";
+import { FileText, Monitor, Linkedin } from "lucide-react";
+import { siteConfig, experienceData, achievementsData } from "@/constants";
+import {
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "@/components/ui/dialog";
 
 // 🎨 React Icons Imports
-import { SiSpotify, SiGithub, SiDiscord, SiNotion } from "react-icons/si";
-import { VscVscode } from "react-icons/vsc";
-import { SiClaudecode } from "react-icons/si";
-import { SiOpencode } from "react-icons/si";
+import { SiGithub, SiDiscord, SiGmail, SiX } from "react-icons/si";
 
 type RailItem = {
   label: string;
@@ -20,13 +24,36 @@ type RailItem = {
 };
 
 const rail: RailItem[] = [
-  { label: "VS Code", icon: <VscVscode size={22} />, link: "https://code.visualstudio.com/", hoverColor: "hover:text-sky-400" },
-  { label: "Notion", icon: <SiNotion size={22} />, link: "https://www.notion.so/", hoverColor: "hover:text-emerald-100" },
-  { label: "Opencode", icon: <SiOpencode size={22} />, link: "https://www.opencode.ai", hoverColor: "hover:text-emerald-400" },
-  { label: "Claude", icon: <SiClaudecode size={22} />, link: "https://claude.ai", hoverColor: "hover:text-orange-400" },
-  { label: "Spotify", icon: <SiSpotify size={22} />, link: "https://spotify.com/", hoverColor: "hover:text-green-500" },
-  { label: "GitHub", icon: <SiGithub size={22} />, link: "https://github.com/", hoverColor: "hover:text-emerald-200" },
-  { label: "Discord", icon: <SiDiscord size={22} />, link: "https://discord.com/", hoverColor: "hover:text-indigo-400" },
+  {
+    label: "GitHub",
+    icon: <SiGithub size={22} />,
+    link: siteConfig.socials.github.url,
+    hoverColor: "hover:text-emerald-300",
+  },
+  {
+    label: "X (Twitter)",
+    icon: <SiX size={20} />,
+    link: siteConfig.socials.x.url,
+    hoverColor: "hover:text-emerald-100",
+  },
+  {
+    label: "Gmail",
+    icon: <SiGmail size={20} className="text-[#EA4335]" />,
+    link: siteConfig.socials.email.url,
+    hoverColor: "hover:text-[#EA4335]",
+  },
+  {
+    label: "Discord",
+    icon: <SiDiscord size={20} className="text-[#5865F2]" />,
+    link: siteConfig.socials.discord.url,
+    hoverColor: "hover:text-[#5865F2]",
+  },
+  {
+    label: "LinkedIn",
+    icon: <Linkedin size={22} className="text-[#0A66C2]" />,
+    link: siteConfig.socials.linkedin.url,
+    hoverColor: "hover:text-[#0A66C2]",
+  },
 ];
 
 export default function ToolsBoard() {
@@ -64,27 +91,10 @@ export default function ToolsBoard() {
                 </div>
               </div>
 
-              {/* Blog Wave Link */}
-              <Link href="/blog" className="relative block">
-                <div className="relative rounded-xl h-12 border border-emerald-800/50 bg-gradient-to-r from-emerald-800 via-emerald-700 to-teal-700 overflow-hidden shadow-inner cursor-pointer transition-all duration-300 hover:scale-[1.02]">
-                  <div className="absolute inset-0 pointer-events-none overflow-hidden">
-                    <svg className="absolute left-0 top-0 w-[200%] h-full wave-layer1" viewBox="0 0 2880 320" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
-                      <path d="M0,160 C240,200 480,120 720,144 C960,168 1200,248 1440,224 C1680,200 1920,120 2160,128 C2400,136 2640,200 2880,176 L2880 320 L0 320 Z" fill="rgba(255,255,255,0.08)" />
-                      <path d="M0,160 C240,200 480,120 720,144 C960,168 1200,248 1440,224 C1680,200 1920,120 2160,128 C2400,136 2640,200 2880,176 L2880 320 L0 320 Z" transform="translate(2880,0)" fill="rgba(255,255,255,0.08)" />
-                    </svg>
-                  </div>
-                  <div className="relative flex items-center justify-center h-full">
-                    <span className="text-emerald-50 text-xl font-semibold tracking-wide drop-shadow-[0_0_8px_rgba(52,211,153,0.4)]">ブログ</span>
-                  </div>
-                </div>
-              </Link>
-
-              {/* Music Button - Vinyl Player */}
-              <a
-                href="https://open.spotify.com/track/6DCZcSspjsKoFjzjrWoCdn"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex items-center rounded-2xl h-[100px] transition-all duration-300 hover:scale-[1.02] active:scale-[0.98] cursor-pointer relative overflow-hidden group"
+              {/* Projects Vinyl Link */}
+              <Link
+                href="/projects"
+                className="flex items-center justify-between rounded-2xl h-[100px] px-4 transition-all duration-300 hover:scale-[1.02] active:scale-[0.98] cursor-pointer relative overflow-hidden group"
                 style={{ background: "linear-gradient(135deg, #071a0a 0%, #040d06 100%)", boxShadow: "0 4px 15px rgba(0,0,0,0.5), inset 0 1px 0 rgba(52,211,153,0.08)" }}
               >
                 {/* Decorative circles */}
@@ -109,15 +119,27 @@ export default function ToolsBoard() {
                   {/* Edge highlight */}
                   <div className="absolute inset-0 rounded-full border border-emerald-900/30" />
                 </div>
+
+                {/* Projects Text Content */}
+                <div className="relative z-10 ml-auto pr-6 flex flex-col justify-center text-right select-none">
+                  <div className="text-xl font-extrabold text-emerald-50 tracking-tight font-mono leading-tight">
+                    PROJ<br />
+                    <span className="text-emerald-400 drop-shadow-[0_0_8px_rgba(52,211,153,0.6)]">ECTS.</span>
+                  </div>
+                  <span className="text-[10px] text-emerald-600 font-mono mt-0.5 group-hover:text-emerald-400 transition-colors">
+                    explore work →
+                  </span>
+                </div>
+
                 {/* Equalizer bars */}
-                <div className="absolute right-3 bottom-3 flex items-end gap-[2px] opacity-50">
+                <div className="absolute right-3 bottom-2.5 flex items-end gap-[2px] opacity-40 group-hover:opacity-80 transition-opacity">
                   <div className="w-1 bg-emerald-500 rounded-t" style={{ height: "8px", animation: "bounce 0.5s ease-in-out infinite alternate" }} />
                   <div className="w-1 bg-emerald-400 rounded-t" style={{ height: "12px", animation: "bounce 0.7s ease-in-out infinite alternate" }} />
                   <div className="w-1 bg-teal-500 rounded-t" style={{ height: "6px", animation: "bounce 0.4s ease-in-out infinite alternate" }} />
                   <div className="w-1 bg-emerald-400 rounded-t" style={{ height: "14px", animation: "bounce 0.6s ease-in-out infinite alternate" }} />
                   <div className="w-1 bg-emerald-500 rounded-t" style={{ height: "10px", animation: "bounce 0.5s ease-in-out infinite alternate" }} />
                 </div>
-              </a>
+              </Link>
 
               {/* Compact System Specs */}
               <Link href="/" className="relative rounded-xl overflow-hidden group flex-1 shadow flex flex-col min-h-[90px] cursor-pointer">
@@ -169,32 +191,145 @@ export default function ToolsBoard() {
                 <span className="font-extrabold text-xs">_RESUME.</span>
               </div>
 
-              {/* Excellence Tabs */}
+              {/* Excellence Tabs with Interactive Modals */}
               <div className="rounded-xl overflow-hidden border border-emerald-900/60 bg-[#040d06] shadow">
                 <div className="p-2 border-b border-emerald-900/40">
                   <div className="grid grid-cols-2 gap-1.5">
-                    <Link href="/experience" className="block relative overflow-hidden">
-                      <div className="absolute -right-6 -bottom-6 opacity-20">
-                        <div className="w-16 h-16 rounded-full border-2 border-emerald-800" />
-                      </div>
-                      <div className="absolute -right-2 -bottom-2 opacity-15">
-                        <div className="w-10 h-10 rounded-full border-2 border-emerald-800" />
-                      </div>
-                      <div className="p-1.5 rounded-lg bg-emerald-950/50 border border-emerald-900/60 hover:bg-emerald-900/30 hover:border-emerald-700 transition-colors text-center relative z-10">
-                        <div className="text-xs sm:text-sm font-extrabold leading-tight text-emerald-100 tracking-tight font-mono">EXPER<br />IENCE.</div>
-                      </div>
-                    </Link>
-                    <Link href="/achievements" className="block relative overflow-hidden">
-                      <div className="absolute -right-6 -bottom-6 opacity-20">
-                        <div className="w-16 h-16 rounded-full border-2 border-emerald-800" />
-                      </div>
-                      <div className="absolute -right-2 -bottom-2 opacity-15">
-                        <div className="w-10 h-10 rounded-full border-2 border-emerald-800" />
-                      </div>
-                      <div className="p-1.5 rounded-lg bg-emerald-950/50 border border-emerald-900/60 hover:bg-emerald-900/30 hover:border-emerald-700 transition-colors text-center relative z-10">
-                        <div className="text-xs sm:text-sm font-extrabold leading-tight text-emerald-100 tracking-tight font-mono">ACHIEV<br />EMENT.</div>
-                      </div>
-                    </Link>
+                    {/* Experience Dialog */}
+                    <Dialog>
+                      <DialogTrigger asChild>
+                        <button className="block w-full relative overflow-hidden text-left cursor-pointer group">
+                          <div className="absolute -right-6 -bottom-6 opacity-20">
+                            <div className="w-16 h-16 rounded-full border-2 border-emerald-800" />
+                          </div>
+                          <div className="absolute -right-2 -bottom-2 opacity-15">
+                            <div className="w-10 h-10 rounded-full border-2 border-emerald-800" />
+                          </div>
+                          <div className="p-1.5 rounded-lg bg-emerald-950/50 border border-emerald-900/60 group-hover:bg-emerald-900/40 group-hover:border-emerald-600 transition-all text-center relative z-10">
+                            <div className="text-xs sm:text-sm font-extrabold leading-tight text-emerald-100 tracking-tight font-mono">
+                              EXPER<br />IENCE.
+                            </div>
+                          </div>
+                        </button>
+                      </DialogTrigger>
+                      <DialogContent className="max-h-[85vh] max-w-2xl overflow-y-auto bg-[#030a06] border border-emerald-900/80 text-emerald-50 p-6 scrollbar-none glow-emerald">
+                        <DialogHeader>
+                          <div className="flex items-center justify-between pb-2 border-b border-emerald-900/50">
+                            <DialogTitle className="text-xl font-bold font-mono text-emerald-400 flex items-center gap-2">
+                              <span>💼</span> Work Experience
+                            </DialogTitle>
+                            <Link
+                              href="/experience"
+                              className="text-xs font-mono text-emerald-400 hover:text-emerald-300 underline"
+                            >
+                              [Open Dedicated Page →]
+                            </Link>
+                          </div>
+                        </DialogHeader>
+                        <div className="space-y-6 pt-4 font-mono">
+                          {experienceData.map((exp) => (
+                            <div
+                              key={exp.id}
+                              className="rounded-xl bg-emerald-950/40 border border-emerald-900/60 p-4 space-y-2 shadow-inner"
+                            >
+                              <div className="flex items-center justify-between flex-wrap gap-2">
+                                <h3 className="text-base font-bold text-emerald-100">{exp.title}</h3>
+                                <span className="text-xs text-emerald-600 font-semibold">{exp.duration}</span>
+                              </div>
+                              <div className="flex items-center gap-2 text-xs text-emerald-400 font-semibold">
+                                <span>{exp.company}</span>
+                                <span className="text-emerald-800">•</span>
+                                <span className="text-emerald-600">{exp.location}</span>
+                              </div>
+                              <ul className="space-y-1.5 pt-1 text-xs text-emerald-300/80 leading-relaxed">
+                                {exp.description.map((desc, idx) => (
+                                  <li key={idx} className="flex items-start gap-2">
+                                    <span className="text-emerald-500 font-bold">›</span>
+                                    <span>{desc}</span>
+                                  </li>
+                                ))}
+                              </ul>
+                              <div className="flex flex-wrap gap-1.5 pt-2">
+                                {exp.technologies.map((t) => (
+                                  <span
+                                    key={t}
+                                    className="px-2 py-0.5 text-[10px] rounded bg-emerald-950 border border-emerald-900/60 text-emerald-400"
+                                  >
+                                    {t}
+                                  </span>
+                                ))}
+                              </div>
+                            </div>
+                          ))}
+                        </div>
+                      </DialogContent>
+                    </Dialog>
+
+                    {/* Achievements Dialog */}
+                    <Dialog>
+                      <DialogTrigger asChild>
+                        <button className="block w-full relative overflow-hidden text-left cursor-pointer group">
+                          <div className="absolute -right-6 -bottom-6 opacity-20">
+                            <div className="w-16 h-16 rounded-full border-2 border-emerald-800" />
+                          </div>
+                          <div className="absolute -right-2 -bottom-2 opacity-15">
+                            <div className="w-10 h-10 rounded-full border-2 border-emerald-800" />
+                          </div>
+                          <div className="p-1.5 rounded-lg bg-emerald-950/50 border border-emerald-900/60 group-hover:bg-emerald-900/40 group-hover:border-emerald-600 transition-all text-center relative z-10">
+                            <div className="text-xs sm:text-sm font-extrabold leading-tight text-emerald-100 tracking-tight font-mono">
+                              ACHIEV<br />EMENT.
+                            </div>
+                          </div>
+                        </button>
+                      </DialogTrigger>
+                      <DialogContent className="max-h-[85vh] max-w-2xl overflow-y-auto bg-[#030a06] border border-emerald-900/80 text-emerald-50 p-6 scrollbar-none glow-emerald">
+                        <DialogHeader>
+                          <div className="flex items-center justify-between pb-2 border-b border-emerald-900/50">
+                            <DialogTitle className="text-xl font-bold font-mono text-emerald-400 flex items-center gap-2">
+                              <span>🏆</span> Achievements &amp; Awards
+                            </DialogTitle>
+                            <Link
+                              href="/achievements"
+                              className="text-xs font-mono text-emerald-400 hover:text-emerald-300 underline"
+                            >
+                              [Open Dedicated Page →]
+                            </Link>
+                          </div>
+                        </DialogHeader>
+                        <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-4 font-mono">
+                          {achievementsData.map((item) => (
+                            <div
+                              key={item.id}
+                              className="rounded-xl bg-emerald-950/40 border border-emerald-900/60 p-4 space-y-2 flex flex-col justify-between"
+                            >
+                              <div>
+                                <div className="flex items-center justify-between gap-1">
+                                  <span className="text-xl">
+                                    {item.type === "Winner" ? "🏆" : item.type === "Finalist" ? "🥈" : "💻"}
+                                  </span>
+                                  <span className="text-[11px] text-emerald-600">{item.year}</span>
+                                </div>
+                                <h3 className="text-sm font-bold text-emerald-100 mt-1">{item.title}</h3>
+                                <p className="text-xs text-emerald-400 font-semibold">{item.subtitle}</p>
+                                <p className="text-xs text-emerald-700 mt-1 leading-relaxed">
+                                  {item.description[0]}
+                                </p>
+                              </div>
+                              <div className="flex flex-wrap gap-1 pt-2">
+                                {item.technologies.map((tech) => (
+                                  <span
+                                    key={tech}
+                                    className="px-1.5 py-0.5 text-[9px] rounded bg-emerald-950 border border-emerald-900/50 text-emerald-300"
+                                  >
+                                    {tech}
+                                  </span>
+                                ))}
+                              </div>
+                            </div>
+                          ))}
+                        </div>
+                      </DialogContent>
+                    </Dialog>
                   </div>
                 </div>
                 <div className="px-2 py-1 text-[9px] text-emerald-800 font-mono">
@@ -242,14 +377,6 @@ export default function ToolsBoard() {
       </div>
 
       <style jsx>{`
-        .wave-layer1 {
-          transform: translateX(0);
-          animation: wave-1 8s linear infinite;
-        }
-        @keyframes wave-1 {
-          from { transform: translateX(0); }
-          to { transform: translateX(-50%); }
-        }
         .scrollbar-none::-webkit-scrollbar {
           display: none;
         }
