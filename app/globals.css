@@ -1,0 +1,195 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+body {
+  font-family: var(--font-geist-sans), Arial, sans-serif;
+  background-color: #030a06;
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+}
+
+@layer base {
+  :root {
+    /* Light mode - kept minimal as site is dark-first */
+    --background: 150 30% 5%;
+    --foreground: 150 20% 92%;
+    --card: 150 28% 6%;
+    --card-foreground: 150 20% 92%;
+    --popover: 150 28% 6%;
+    --popover-foreground: 150 20% 92%;
+    --primary: 152 76% 55%;
+    --primary-foreground: 150 30% 5%;
+    --secondary: 152 30% 12%;
+    --secondary-foreground: 150 20% 80%;
+    --muted: 150 20% 10%;
+    --muted-foreground: 152 20% 45%;
+    --accent: 174 72% 50%;
+    --accent-foreground: 150 30% 5%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 152 40% 12%;
+    --input: 152 40% 12%;
+    --ring: 152 76% 55%;
+    --chart-1: 152 76% 55%;
+    --chart-2: 174 72% 50%;
+    --chart-3: 197 37% 24%;
+    --chart-4: 43 74% 66%;
+    --chart-5: 27 87% 67%;
+    --radius: 0.5rem;
+  }
+
+  .dark {
+    --background: 150 30% 3%;
+    --foreground: 150 20% 94%;
+    --card: 150 28% 4%;
+    --card-foreground: 150 20% 94%;
+    --popover: 150 28% 4%;
+    --popover-foreground: 150 20% 94%;
+    --primary: 152 76% 55%;
+    --primary-foreground: 150 30% 3%;
+    --secondary: 152 30% 10%;
+    --secondary-foreground: 150 20% 80%;
+    --muted: 150 20% 8%;
+    --muted-foreground: 152 20% 42%;
+    --accent: 174 72% 48%;
+    --accent-foreground: 150 30% 3%;
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 152 40% 10%;
+    --input: 152 40% 10%;
+    --ring: 152 76% 55%;
+    --chart-1: 152 76% 55%;
+    --chart-2: 174 72% 48%;
+    --chart-3: 30 80% 55%;
+    --chart-4: 280 65% 60%;
+    --chart-5: 340 75% 55%;
+  }
+}
+
+.scrollbar-none::-webkit-scrollbar {
+  display: none;
+}
+
+.scrollbar-none {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+/* ── Terminal grid overlay ── */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background-image:
+    linear-gradient(rgba(52, 211, 153, 0.025) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(52, 211, 153, 0.025) 1px, transparent 1px);
+  background-size: 40px 40px;
+}
+
+/* ── Subtle scanline ── */
+body::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background: repeating-linear-gradient(
+    0deg,
+    transparent,
+    transparent 2px,
+    rgba(0, 0, 0, 0.04) 2px,
+    rgba(0, 0, 0, 0.04) 4px
+  );
+}
+
+/* Background Container */
+.rain-bg {
+  position: fixed;
+  inset: 0;
+  z-index: -2;
+}
+
+.rain-bg-img {
+  position: absolute;
+  inset: 0;
+  background: url('/nightskybg.png') center/cover no-repeat;
+  transition: opacity 2s ease;
+  opacity: 1;
+}
+
+.rain-bg-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 5, 2, 0.78);
+  transition: background 2s ease;
+}
+
+/* Rainy Theme */
+html.rainy {
+  background: #020c08;
+  transition: background 1.5s ease;
+}
+
+html.rainy body,
+html.rainy main {
+  background: transparent !important;
+}
+
+html.rainy .rain-bg-img {
+  opacity: 0;
+}
+
+html.rainy .rain-bg-overlay {
+  background: rgba(0, 5, 2, 0.35);
+}
+
+html.rainy .rain-bg-cloudy {
+  opacity: 1;
+}
+
+.rain-bg-cloudy {
+  position: absolute;
+  inset: 0;
+  background: url('/cloudebg.png') center/cover no-repeat;
+  opacity: 0;
+  transition: opacity 2s ease 0.5s;
+}
+
+html.rainy .cloud-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  background: 
+    radial-gradient(ellipse at 20% 20%, rgba(52, 211, 153, 0.04) 0%, transparent 50%),
+    radial-gradient(ellipse at 80% 30%, rgba(52, 211, 153, 0.02) 0%, transparent 40%);
+  animation: cloudDrift 20s ease-in-out infinite;
+}
+
+@keyframes cloudDrift {
+  0%, 100% { transform: translateX(0); }
+  50% { transform: translateX(10px); }
+}
+
+/* ── Emerald glow utility ── */
+.glow-emerald {
+  box-shadow: 0 0 12px rgba(52, 211, 153, 0.15), 0 0 24px rgba(52, 211, 153, 0.05);
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+    background-color: #030a06;
+  }
+}
