@@ -58,10 +58,10 @@ const rail: RailItem[] = [
 
 export default function ToolsBoard() {
   return (
-    <div className="rounded-2xl bg-[#040d06] shadow-xl border border-emerald-900/60 px-4 py-4 md:px-5 md:py-5 w-full h-full flex flex-col">
-      <div className="flex flex-col md:flex-row gap-3 md:gap-4 grow overflow-hidden">
+    <div className="rounded-2xl bg-[#040d06] shadow-xl border border-emerald-900/60 p-3.5 md:p-4 w-full h-full flex flex-col">
+      <div className="flex flex-col md:flex-row gap-3 md:gap-3.5 grow min-h-0 overflow-hidden">
         {/* Left Tool Rail - Horizontal on mobile, vertical on desktop */}
-        <div className="rounded-[20px] bg-emerald-950/40 border border-emerald-900/50 px-2 py-2 md:py-3 flex flex-row md:flex-col gap-2 w-full md:w-[60px] md:min-w-[60px] items-center shadow-inner overflow-x-auto md:overflow-y-auto md:overflow-x-hidden scrollbar-none">
+        <div className="rounded-[20px] bg-emerald-950/40 border border-emerald-900/50 px-2 py-2 md:py-3 flex flex-row md:flex-col gap-2 w-full md:w-[60px] md:min-w-[60px] items-center shadow-inner overflow-x-auto md:overflow-y-auto md:overflow-x-hidden scrollbar-none shrink-0">
           {rail.map((r, i) => (
             <a
               key={i}
@@ -76,14 +76,14 @@ export default function ToolsBoard() {
           ))}
         </div>
 
-        {/* Main Content (Scrollable Container) */}
-        <div className="flex-1 flex flex-col overflow-y-auto overflow-x-hidden scrollbar-none pr-1">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+        {/* Main Content (Non-scrollable, fitted to viewport) */}
+        <div className="flex-1 flex flex-col min-h-0 overflow-hidden">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-3 h-full">
 
             {/* --- LEFT COLUMN --- */}
-            <div className="flex flex-col gap-3">
+            <div className="flex flex-col justify-between h-full gap-2.5 min-h-0">
               {/* Daily Tool Stack */}
-              <div className="leading-[0.95]">
+              <div className="leading-[0.95] shrink-0">
                 <div className="text-3xl font-extrabold text-emerald-50">DAILY</div>
                 <div className="text-xl font-semibold text-emerald-300 mt-0.5 font-mono">Tool</div>
                 <div className="text-3xl font-extrabold text-emerald-50 mt-0.5">
@@ -94,7 +94,7 @@ export default function ToolsBoard() {
               {/* Projects Vinyl Link */}
               <Link
                 href="/projects"
-                className="flex items-center justify-between rounded-2xl h-[100px] px-4 transition-all duration-300 hover:scale-[1.02] active:scale-[0.98] cursor-pointer relative overflow-hidden group"
+                className="flex items-center justify-between rounded-2xl h-[96px] px-4 transition-all duration-300 hover:scale-[1.02] active:scale-[0.98] cursor-pointer relative overflow-hidden group shrink-0"
                 style={{ background: "linear-gradient(135deg, #071a0a 0%, #040d06 100%)", boxShadow: "0 4px 15px rgba(0,0,0,0.5), inset 0 1px 0 rgba(52,211,153,0.08)" }}
               >
                 {/* Decorative circles */}
@@ -121,7 +121,7 @@ export default function ToolsBoard() {
                 </div>
 
                 {/* Projects Text Content */}
-                <div className="relative z-10 ml-auto pr-6 flex flex-col justify-center text-right select-none">
+                <div className="relative z-10 ml-auto pr-5 flex flex-col justify-center text-right select-none">
                   <div className="text-xl font-extrabold text-emerald-50 tracking-tight font-mono leading-tight">
                     PROJ<br />
                     <span className="text-emerald-400 drop-shadow-[0_0_8px_rgba(52,211,153,0.6)]">ECTS.</span>
@@ -141,9 +141,9 @@ export default function ToolsBoard() {
                 </div>
               </Link>
 
-              {/* Compact System Specs */}
-              <Link href="/" className="relative rounded-xl overflow-hidden group flex-1 shadow flex flex-col min-h-[90px] cursor-pointer">
-                <div className="relative flex flex-col p-2.5 rounded-xl h-full justify-between z-10" style={{ background: "linear-gradient(145deg, #071a0a 0%, #040d06 50%, #071a0a 100%)" }}>
+              {/* Expanded System Specs to fill space before CP */}
+              <Link href="/" className="relative rounded-xl overflow-hidden group shadow flex flex-col justify-between cursor-pointer flex-1 min-h-[90px]">
+                <div className="relative flex flex-col p-3 rounded-xl h-full justify-between z-10" style={{ background: "linear-gradient(145deg, #071a0a 0%, #040d06 50%, #071a0a 100%)" }}>
                   <div className="flex items-center gap-2">
                     <div className="p-1.5 rounded-lg bg-emerald-950/80 border border-emerald-900/50 text-emerald-700 group-hover:text-emerald-400 transition-colors duration-300">
                       <Monitor size={14} />
@@ -154,7 +154,7 @@ export default function ToolsBoard() {
                     </div>
                   </div>
 
-                  <div className="flex flex-wrap gap-1.5 mt-2">
+                  <div className="flex flex-wrap gap-1.5 mt-auto pt-3">
                     <span className="px-1.5 py-0.5 text-[9px] font-mono rounded bg-emerald-950/50 text-emerald-300 border border-emerald-900/50">M3 (8-512)</span>
                     <span className="px-1.5 py-0.5 text-[9px] font-mono rounded bg-emerald-950/50 text-emerald-300 border border-emerald-900/50">Snapdragon Gen 7s</span>
                     <span className="px-1.5 py-0.5 text-[9px] font-mono rounded bg-emerald-950/50 text-emerald-300 border border-emerald-900/50">Dimensity 7000</span>
@@ -162,24 +162,24 @@ export default function ToolsBoard() {
                 </div>
               </Link>
 
-              {/* Compact CP Tab */}
+              {/* Compact CP Tab - Anchored at the bottom */}
               <a
-                href="https://codolio.com/profile/strangecodes"
+                href="https://codolio.com/profile/Lonecoder1"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="p-2 rounded-xl bg-emerald-950/40 border border-emerald-900/50 flex items-center gap-2 justify-center shadow hover:bg-emerald-900/30 hover:border-emerald-700 transition-colors cursor-pointer"
+                className="p-2 rounded-xl bg-emerald-950/40 border border-emerald-900/50 flex items-center gap-2 justify-center shadow hover:bg-emerald-900/30 hover:border-emerald-700 transition-colors cursor-pointer shrink-0 mt-auto"
               >
-                <img src="/myprofileimage2.png" alt="SG" className="w-5 h-5 rounded-full border border-emerald-800 object-cover" />
+                <img src="/favicon.png" alt="Lonecoder1" className="w-5 h-5 rounded-full border border-emerald-800 object-cover" />
                 <span className="text-lg font-extrabold leading-none tracking-tighter text-emerald-100">CP</span>
                 <span className="text-[10px] text-emerald-700 font-semibold font-mono">Codolio Profile</span>
               </a>
             </div>
 
             {/* --- RIGHT COLUMN --- */}
-            <div className="flex flex-col gap-3">
+            <div className="flex flex-col justify-between h-full gap-2.5 min-h-0">
               {/* Compact Resume Button */}
               <div
-                className="flex items-center justify-center gap-1.5 bg-emerald-950/40 border border-emerald-900/60 hover:border-emerald-600 rounded-xl p-2.5 text-emerald-600 hover:text-emerald-300 hover:bg-emerald-900/30 transition-all duration-300 shadow cursor-pointer select-none font-mono"
+                className="flex items-center justify-center gap-1.5 bg-emerald-950/40 border border-emerald-900/60 hover:border-emerald-600 rounded-xl p-2.5 text-emerald-600 hover:text-emerald-300 hover:bg-emerald-900/30 transition-all duration-300 shadow cursor-pointer select-none font-mono shrink-0"
                 onClick={() => {
                   const link = document.createElement("a");
                   link.href = siteConfig.resumeUrl;
@@ -192,7 +192,7 @@ export default function ToolsBoard() {
               </div>
 
               {/* Excellence Tabs with Interactive Modals */}
-              <div className="rounded-xl overflow-hidden border border-emerald-900/60 bg-[#040d06] shadow">
+              <div className="rounded-xl overflow-hidden border border-emerald-900/60 bg-[#040d06] shadow shrink-0">
                 <div className="p-2 border-b border-emerald-900/40">
                   <div className="grid grid-cols-2 gap-1.5">
                     {/* Experience Dialog */}
@@ -338,37 +338,13 @@ export default function ToolsBoard() {
               </div>
 
               {/* Quote */}
-              <div className="px-1 text-center">
+              <div className="px-1 text-center shrink-0">
                 <div className="text-emerald-500 text-sm font-medium italic tracking-wide font-mono drop-shadow-[0_0_6px_rgba(52,211,153,0.3)]">&ldquo;Into the Unknown&rdquo;</div>
               </div>
 
               {/* Image card */}
-              <div className="rounded-xl overflow-hidden border border-emerald-900/60 bg-emerald-950/40 shadow flex-1 min-h-[100px]">
+              <div className="rounded-xl overflow-hidden border border-emerald-900/60 bg-emerald-950/40 shadow flex-1 min-h-[80px]">
                 <img src="/anime.jpg" alt="Card Image" className="w-full h-full object-cover opacity-80" />
-              </div>
-            </div>
-          </div>
-
-          {/* --- BOTTOM ROW: GITHUB GRAPH --- */}
-          <div className="mt-3 rounded-xl bg-[#071a0a] border border-emerald-900/40 p-2.5 shadow text-emerald-300">
-            <div className="w-full flex justify-center">
-              <img
-                src={`https://ghchart.rshah.org/34d399/${siteConfig.socials.github.username}`}
-                alt="GitHub Contributions"
-                className="w-full h-auto max-h-[85px] object-contain opacity-90 pointer-events-none"
-              />
-            </div>
-
-            <div className="flex items-center justify-between text-[9px] mt-1.5 text-emerald-700 px-1 font-mono">
-              <span>779 contributions in the last year</span>
-              <div className="flex items-center gap-1">
-                <span>Less</span>
-                <div className="w-2 h-2 rounded-[1px] bg-[#071a0a] border border-emerald-900/40"></div>
-                <div className="w-2 h-2 rounded-[1px] bg-[#064e35]"></div>
-                <div className="w-2 h-2 rounded-[1px] bg-[#059669]"></div>
-                <div className="w-2 h-2 rounded-[1px] bg-[#10b981]"></div>
-                <div className="w-2 h-2 rounded-[1px] bg-[#34d399]"></div>
-                <span>More</span>
               </div>
             </div>
           </div>

@@ -31,14 +31,16 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
+        className={`${geistSans.variable} ${geistMono.variable} antialiased bg-[#030a06] text-foreground min-h-screen flex flex-col`}>
         <ThemeProvider
             attribute="class"
             defaultTheme="dark"
             enableSystem
             disableTransitionOnChange
           >
-            {children}
+            <div className="flex-1 flex flex-col min-h-0 w-full">
+              {children}
+            </div>
             <Footer />
           </ThemeProvider>
       </body>

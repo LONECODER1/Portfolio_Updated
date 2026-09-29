@@ -63,27 +63,27 @@ export default function ProfileCard() {
     .replace(",", "");
 
   return (
-    <div className="rounded-2xl bg-[#040d06] shadow-2xl border border-emerald-900/60 px-7 md:px-10 py-7 md:py-5 w-full h-full flex flex-col relative z-20 glow-emerald">
-      <div className="flex items-start gap-4">
-        <div className="relative">
+    <div className="rounded-2xl bg-[#040d06] shadow-xl border border-emerald-900/60 p-3.5 xl:p-4 w-full flex flex-col justify-between relative z-20 glow-emerald">
+      <div className="flex items-start gap-3.5">
+        <div className="relative shrink-0">
           <div className="absolute inset-0 rounded-full bg-emerald-400/20 blur-md" />
           <img
             src={siteConfig.avatar}
             alt={siteConfig.name}
-            className="relative w-[72px] h-[72px] rounded-full border-2 border-emerald-800 object-cover"
+            className="relative w-12 h-12 xl:w-14 xl:h-14 rounded-full border-2 border-emerald-800 object-cover"
           />
         </div>
 
-        <div className="flex-1">
+        <div className="flex-1 min-w-0">
           <div className="flex items-center justify-between">
-            <div>
-              <div className="text-2xl font-bold text-emerald-50 tracking-tight">{siteConfig.name.toLowerCase()}</div>
-              <div className="text-sm text-emerald-700 font-mono">{siteConfig.handle}</div>
+            <div className="leading-tight">
+              <div className="text-lg xl:text-xl font-bold text-emerald-50 tracking-tight">{siteConfig.name.toLowerCase()}</div>
+              <div className="text-xs text-emerald-700 font-mono">{siteConfig.handle}</div>
             </div>
 
             <button
               onClick={() => setRainyTheme(!rainyTheme)}
-              className={`p-2 text-xs font-bold transition-all duration-300 hover:scale-110 ${
+              className={`p-1 text-xs font-bold transition-all duration-300 hover:scale-110 ${
                 rainyTheme
                   ? "text-teal-300 drop-shadow-[0_0_8px_rgba(94,234,212,0.6)]"
                   : "text-emerald-800 hover:text-emerald-400"
@@ -93,7 +93,7 @@ export default function ProfileCard() {
             </button>
           </div>
 
-          <p className="text-emerald-100 mt-4 text-lg">
+          <p className="text-emerald-100 mt-1.5 text-xs xl:text-sm font-medium">
             I build{" "}
             <span
               className={`font-bold text-emerald-400 transition-all duration-700 drop-shadow-[0_0_8px_rgba(52,211,153,0.5)] ${
@@ -106,14 +106,14 @@ export default function ProfileCard() {
             </span>
           </p>
 
-          <p className="text-emerald-700 mt-2 text-sm font-mono">
+          <p className="text-emerald-700 mt-1 text-[11px] xl:text-xs font-mono leading-relaxed line-clamp-2">
             {siteConfig.bio}
           </p>
         </div>
       </div>
 
-      <div className="mt-auto border-t border-emerald-900/40 pt-3 text-xs text-emerald-700 flex items-center font-mono">
-        <span className="w-2 h-2 bg-emerald-400 rounded-full mr-2 shadow-[0_0_6px_rgba(52,211,153,0.8)]"></span>
+      <div className="mt-2.5 border-t border-emerald-900/40 pt-2 text-[10px] xl:text-[11px] text-emerald-700 flex items-center font-mono">
+        <span className="w-1.5 h-1.5 bg-emerald-400 rounded-full mr-2 shadow-[0_0_6px_rgba(52,211,153,0.8)]"></span>
         <span className="text-emerald-500">available for work</span>
         <span className="ml-auto text-emerald-700">{mounted ? formattedTime : ""}</span>
       </div>

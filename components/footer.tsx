@@ -15,7 +15,7 @@ const Footer = () => {
   const route = routeConfig[pathname] || { section: "portfolio", color: "text-emerald-400" };
 
   return (
-    <footer className="w-full py-3 px-4 border-t border-emerald-900/30 bg-[#030a06]/90 backdrop-blur-sm text-emerald-800 text-[11px] font-mono">
+    <footer className="w-full h-[40px] py-1.5 px-4 border-t border-emerald-900/30 bg-[#030a06]/90 backdrop-blur-sm text-emerald-800 text-[11px] font-mono shrink-0 flex items-center">
       <div className="max-w-[1400px] mx-auto flex flex-col md:flex-row items-center justify-between gap-2">
         {/* Left - CLI Style */}
         <div className="flex items-center gap-2">

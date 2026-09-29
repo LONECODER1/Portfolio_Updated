@@ -56,7 +56,7 @@ export default function TechStackCard() {
       variants={getBadgeVariants(text)}
       whileHover="hover"
       whileTap="tap"
-      className="border border-dashed border-emerald-900 bg-emerald-950/50 text-emerald-200 px-3 py-1.5 rounded-xl text-sm font-mono cursor-pointer shadow-sm backdrop-blur-sm flex items-center justify-center gap-2 select-none hover:border-emerald-600 hover:bg-emerald-900/30 hover:text-emerald-100 transition-colors"
+      className="border border-dashed border-emerald-900 bg-emerald-950/50 text-emerald-200 px-2 py-1 rounded-lg text-xs font-mono cursor-pointer shadow-sm backdrop-blur-sm flex items-center justify-center gap-1.5 select-none hover:border-emerald-600 hover:bg-emerald-900/30 hover:text-emerald-100 transition-colors"
     >
       <span>{getIcon(text)}</span>
       <span>{text}</span>
@@ -64,42 +64,44 @@ export default function TechStackCard() {
   );
 
   const SectionLabel = ({ label }: { label: string }) => (
-    <div className="text-xs font-semibold text-emerald-700 mb-3 uppercase tracking-[0.2em] font-mono flex items-center gap-2">
+    <div className="text-[10px] xl:text-[11px] font-semibold text-emerald-700 mb-1.5 uppercase tracking-[0.15em] font-mono flex items-center gap-1.5">
       <span className="text-emerald-500">▸</span> {label}
     </div>
   );
 
   return (
-    <div className="rounded-2xl bg-[#040d06] shadow-xl border border-emerald-900/60 px-6 py-6 h-full">
-      <div className="text-3xl md:text-4xl font-serif text-emerald-50 mb-6 tracking-tight">
+    <div className="rounded-2xl bg-[#040d06] shadow-xl border border-emerald-900/60 p-3.5 xl:p-4 h-full flex flex-col justify-between overflow-y-auto scrollbar-none">
+      <div className="text-2xl xl:text-3xl font-serif text-emerald-50 mb-2.5 tracking-tight shrink-0">
         Skills <span className="text-emerald-800">#</span>
       </div>
 
-      <div className="mb-6">
-        <SectionLabel label="Frontend" />
-        <div className="flex flex-wrap gap-2.5">
-          {["React", "Nextjs", "Shadcn", "Tailwindcss", "Tanstack"].map(renderBadge)}
+      <div className="space-y-2.5 xl:space-y-3 flex-1 flex flex-col justify-around">
+        <div>
+          <SectionLabel label="Frontend" />
+          <div className="flex flex-wrap gap-1.5">
+            {["React", "Nextjs", "Shadcn", "Tailwindcss", "Tanstack"].map(renderBadge)}
+          </div>
         </div>
-      </div>
 
-      <div className="mb-6">
-        <SectionLabel label="Backend" />
-        <div className="flex flex-wrap gap-2.5">
-          {["Nestjs", "Nodejs", "Express", "FastAPI", "NPM"].map(renderBadge)}
+        <div>
+          <SectionLabel label="Backend" />
+          <div className="flex flex-wrap gap-1.5">
+            {["Nestjs", "Nodejs", "Express", "FastAPI", "NPM"].map(renderBadge)}
+          </div>
         </div>
-      </div>
 
-      <div className="mb-6">
-        <SectionLabel label="DB & Services" />
-        <div className="flex flex-wrap gap-2.5">
-          {["Cloudflare Workers", "Docker", "Postman", "Postgres", "Prisma ORM", "MongoDB", "Redis"].map(renderBadge)}
+        <div>
+          <SectionLabel label="DB & Services" />
+          <div className="flex flex-wrap gap-1.5">
+            {["Cloudflare Workers", "Docker", "Postman", "Postgres", "Prisma ORM", "MongoDB", "Redis"].map(renderBadge)}
+          </div>
         </div>
-      </div>
 
-      <div className="mb-2">
-        <SectionLabel label="Others" />
-        <div className="flex flex-wrap gap-2.5">
-          {["C++", "Python", "GO", "Rust"].map(renderBadge)}
+        <div>
+          <SectionLabel label="Others" />
+          <div className="flex flex-wrap gap-1.5">
+            {["C++", "Python", "GO", "Rust"].map(renderBadge)}
+          </div>
         </div>
       </div>
     </div>

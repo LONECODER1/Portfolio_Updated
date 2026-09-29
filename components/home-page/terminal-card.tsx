@@ -285,8 +285,8 @@ export default function TerminalCard() {
 
   return (
     <div
-      className={`rounded-2xl bg-[#040d06] border border-emerald-900/60 shadow-2xl overflow-hidden relative glow-emerald flex flex-col w-full transition-all duration-300 ${
-        isExpanded ? "min-h-[560px] h-full" : "min-h-[380px] h-full"
+      className={`rounded-2xl bg-[#040d06] border border-emerald-900/60 shadow-2xl overflow-hidden relative glow-emerald flex flex-col w-full h-full min-h-[300px] lg:min-h-0 transition-all duration-300 ${
+        isExpanded ? "fixed inset-3 z-50 shadow-[0_0_60px_rgba(0,0,0,0.9)]" : ""
       }`}
       onClick={() => inputRef.current?.focus()}
     >
@@ -299,7 +299,7 @@ export default function TerminalCard() {
       />
 
       {/* Terminal Title Bar */}
-      <div className="relative z-10 flex items-center justify-between px-4 py-3 bg-emerald-950/40 border-b border-emerald-900/60 backdrop-blur-md select-none">
+      <div className="relative z-10 flex items-center justify-between px-3.5 py-2.5 bg-emerald-950/40 border-b border-emerald-900/60 backdrop-blur-md select-none shrink-0">
         <div className="flex items-center gap-2">
           <div
             onClick={(e) => {
@@ -307,7 +307,7 @@ export default function TerminalCard() {
               setLogs([]);
             }}
             title="Clear Terminal"
-            className="w-3 h-3 rounded-full bg-red-500/80 border border-red-400/40 hover:opacity-100 opacity-80 cursor-pointer transition-opacity"
+            className="w-2.5 h-2.5 rounded-full bg-red-500/80 border border-red-400/40 hover:opacity-100 opacity-80 cursor-pointer transition-opacity"
           />
           <div
             onClick={(e) => {
@@ -315,7 +315,7 @@ export default function TerminalCard() {
               setMatrixActive((prev) => !prev);
             }}
             title="Toggle Matrix Rain"
-            className="w-3 h-3 rounded-full bg-yellow-500/80 border border-yellow-400/40 hover:opacity-100 opacity-80 cursor-pointer transition-opacity"
+            className="w-2.5 h-2.5 rounded-full bg-yellow-500/80 border border-yellow-400/40 hover:opacity-100 opacity-80 cursor-pointer transition-opacity"
           />
           <div
             onClick={(e) => {
@@ -323,7 +323,7 @@ export default function TerminalCard() {
               setIsExpanded((prev) => !prev);
             }}
             title="Toggle Size"
-            className="w-3 h-3 rounded-full bg-emerald-500/80 border border-emerald-400/40 hover:opacity-100 opacity-80 cursor-pointer transition-opacity"
+            className="w-2.5 h-2.5 rounded-full bg-emerald-500/80 border border-emerald-400/40 hover:opacity-100 opacity-80 cursor-pointer transition-opacity"
           />
         </div>
 
@@ -333,7 +333,7 @@ export default function TerminalCard() {
           <span className="text-emerald-700">:~</span>
         </div>
 
-        <div className="flex items-center gap-2">
+        <div className="flex items-center gap-1.5">
           <button
             onClick={(e) => {
               e.stopPropagation();
@@ -344,7 +344,7 @@ export default function TerminalCard() {
             }`}
             title="Toggle Matrix Effect"
           >
-            <Sparkles className="w-3.5 h-3.5" />
+            <Sparkles className="w-3 h-3" />
           </button>
           <button
             onClick={(e) => {
@@ -354,7 +354,7 @@ export default function TerminalCard() {
             className="p-1 rounded text-emerald-700 hover:text-emerald-400 text-xs transition-colors"
             title="Clear logs"
           >
-            <Trash2 className="w-3.5 h-3.5" />
+            <Trash2 className="w-3 h-3" />
           </button>
           <button
             onClick={(e) => {
@@ -364,7 +364,7 @@ export default function TerminalCard() {
             className="p-1 rounded text-emerald-700 hover:text-emerald-400 text-xs transition-colors"
             title="Toggle Size"
           >
-            {isExpanded ? <Minimize2 className="w-3.5 h-3.5" /> : <Maximize2 className="w-3.5 h-3.5" />}
+            {isExpanded ? <Minimize2 className="w-3 h-3" /> : <Maximize2 className="w-3 h-3" />}
           </button>
         </div>
       </div>
@@ -372,7 +372,7 @@ export default function TerminalCard() {
       {/* Terminal Body */}
       <div
         ref={terminalBodyRef}
-        className="relative z-10 p-4 flex-1 overflow-y-auto font-mono text-xs md:text-sm space-y-3 scrollbar-none"
+        className="relative z-10 p-3 flex-1 overflow-y-auto font-mono text-xs space-y-2.5 scrollbar-none min-h-0"
       >
         {logs.map((log) => (
           <div key={log.id} className="space-y-1">
@@ -397,7 +397,7 @@ export default function TerminalCard() {
             value={input}
             onChange={(e) => setInput(e.target.value)}
             onKeyDown={handleKeyDown}
-            className="flex-1 bg-transparent text-emerald-100 outline-none border-none font-mono text-xs md:text-sm placeholder:text-emerald-800"
+            className="flex-1 bg-transparent text-emerald-100 outline-none border-none font-mono text-xs placeholder:text-emerald-800"
             placeholder="Type 'help'..."
             spellCheck={false}
             autoComplete="off"
@@ -406,12 +406,12 @@ export default function TerminalCard() {
       </div>
 
       {/* Terminal Footer status */}
-      <div className="relative z-10 px-4 py-1.5 bg-[#030a06]/90 border-t border-emerald-900/40 text-[11px] text-emerald-700 font-mono flex items-center justify-between select-none">
-        <div className="flex items-center gap-2">
+      <div className="relative z-10 px-3 py-1 bg-[#030a06]/90 border-t border-emerald-900/40 text-[10px] text-emerald-700 font-mono flex items-center justify-between select-none shrink-0">
+        <div className="flex items-center gap-1.5">
           <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse shadow-[0_0_6px_rgba(52,211,153,0.8)]" />
-          <span className="text-emerald-600">Interactive CLI Ready</span>
+          <span className="text-emerald-600">CLI Ready</span>
         </div>
-        <span className="text-emerald-800">Press Tab for Autocomplete</span>
+        <span className="text-emerald-800">Tab for Auto</span>
       </div>
     </div>
   );
