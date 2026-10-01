@@ -2,7 +2,7 @@
 
 import { Github, Linkedin } from "lucide-react";
 import React from "react";
-import { SiDiscord, SiGmail, SiX } from "react-icons/si";
+import { SiDiscord, SiGmail, SiX, SiMedium, SiInstagram } from "react-icons/si";
 import { siteConfig } from "@/data/siteConfig";
 
 type LinkBtnProps = {
@@ -51,6 +51,16 @@ export default function LinksCard() {
           <LinkBtn href={siteConfig.socials.linkedin.url} title="LinkedIn">
             <Linkedin size={24} className="text-[#0A66C2]" />
           </LinkBtn>
+          {siteConfig.socials.medium?.url && (
+            <LinkBtn href={siteConfig.socials.medium.url} title="Medium">
+              <SiMedium size={22} />
+            </LinkBtn>
+          )}
+          {siteConfig.socials.instagram?.url && (
+            <LinkBtn href={siteConfig.socials.instagram.url} title="Instagram">
+              <SiInstagram size={22} className="text-[#E4405F]" />
+            </LinkBtn>
+          )}
         </div>
       </div>
     </div>

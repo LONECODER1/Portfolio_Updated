@@ -86,6 +86,8 @@ export default function TerminalCard() {
           <p>• X: <a href={siteConfig.socials.x.url} target="_blank" rel="noreferrer" className="text-emerald-400 underline">{siteConfig.socials.x.username}</a></p>
           <p>• LinkedIn: <a href={siteConfig.socials.linkedin.url} target="_blank" rel="noreferrer" className="text-emerald-400 underline">LinkedIn Profile</a></p>
           <p>• Email: <a href={siteConfig.socials.email.url} className="text-emerald-400 underline">{siteConfig.socials.email.address}</a></p>
+          {siteConfig.socials.medium?.url && <p>• Medium: <a href={siteConfig.socials.medium.url} target="_blank" rel="noreferrer" className="text-emerald-400 underline">{siteConfig.socials.medium.username || "Medium"}</a></p>}
+          {siteConfig.socials.instagram?.url && <p>• Instagram: <a href={siteConfig.socials.instagram.url} target="_blank" rel="noreferrer" className="text-emerald-400 underline">{siteConfig.socials.instagram.username || "Instagram"}</a></p>}
         </div>
       ),
     },

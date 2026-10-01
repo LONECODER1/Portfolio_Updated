@@ -27,6 +27,8 @@ export interface SiteConfig {
     linkedin: SocialLink;
     email: SocialLink;
     discord: SocialLink;
+    medium?: SocialLink;
+    instagram?: SocialLink;
   };
   skills: {
     languages: string[];
@@ -98,18 +100,26 @@ export const siteConfig: SiteConfig = {
       url: "https://github.com/lonecoder1",
     },
     x: {
-      username: "lonecoder1",
-      url: "https://x.com/lonecoder1",
+      username: "Aditya Gupta",
+      url: "https://x.com/adityag51580955",
     },
     linkedin: {
-      url: "https://www.linkedin.com/in/lonecoder1/",
+      url: "http://www.linkedin.com/in/aditya-gupta-iiitbh",
     },
     email: {
-      address: "contact@lonecoder.dev",
-      url: "mailto:contact@lonecoder.dev",
+      address: "adityagupta1112004vns@gmail.com",
+      url: "mailto:adityagupta1112004vns@gmail.com",
     },
     discord: {
-      url: "https://discord.com",
+      url: "https://discord.com/users/1220399255752015989",
+    },
+    medium: {
+      username: "Aditya Gupta",
+      url: "https://medium.com/@adityagupta1112004vns",
+    },
+    instagram: {
+      username: "adityagupta_v1",
+      url: "https://www.instagram.com/adityagupta_v1?stkn=NnpxanVydXk3MDN4",
     },
   },
 
@@ -225,8 +235,21 @@ export const experienceData: ExperienceItem[] = [
 // 🏆 4. ACHIEVEMENTS & HACKATHONS DATA
 // ------------------------------------------
 export const achievementsData: AchievementItem[] = [
-  {
+    {
     id: 1,
+    title: "Hacktopia 24-Hour Hackathon",
+    subtitle: "1st Position Winner",
+    organizer: "Training & Placement Cell",
+    year: "2025",
+    type: "Winner",
+    link: "https://drive.google.com/file/d/12nGgaR1rW2O4CIU5M6Sxd1zQzK0PLZug/view",
+    technologies: ["Next.js", "TypeScript", "Node.js", "Full Stack", "Agentic AI", "Blockchain"],
+    description: [
+      "Led team BUILDANYTHING and secured 1st position among 90+ participating teams.",
+    ],
+  },
+  {
+    id: 2,
     title: "Shaastra Programming Contest",
     subtitle: "National Level Finalist",
     organizer: "IIT Madras",
@@ -239,7 +262,7 @@ export const achievementsData: AchievementItem[] = [
     ],
   },
   {
-    id: 2,
+    id: 3,
     title: "OPCODE Open Spring Fest",
     subtitle: "Rank 7 - Open Source Contribution",
     organizer: "IIIT Bhagalpur Open Source Community",
@@ -252,19 +275,7 @@ export const achievementsData: AchievementItem[] = [
       "Contributed to 4 projects with 14 accepted PRs.",
     ],
   },
-  {
-    id: 3,
-    title: "Hacktopia 24-Hour Hackathon",
-    subtitle: "1st Position Winner",
-    organizer: "Training & Placement Cell",
-    year: "2025",
-    type: "Winner",
-    link: "https://drive.google.com/file/d/12nGgaR1rW2O4CIU5M6Sxd1zQzK0PLZug/view",
-    technologies: ["Next.js", "TypeScript", "Node.js", "Full Stack", "Agentic AI", "Blockchain"],
-    description: [
-      "Led team BUILDANYTHING and secured 1st position among 90+ participating teams.",
-    ],
-  },
+
   {
     id: 4,
     title: "A2Z DSA Challenge",

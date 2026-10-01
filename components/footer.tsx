@@ -51,6 +51,14 @@ const Footer = () => {
             gh
           </a>
           <a
+            href={siteConfig.socials.x.url}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-emerald-800 hover:text-emerald-100 transition-colors duration-200"
+          >
+            x
+          </a>
+          <a
             href={siteConfig.socials.linkedin.url}
             target="_blank"
             rel="noopener noreferrer"
@@ -58,6 +66,26 @@ const Footer = () => {
           >
             in
           </a>
+          {siteConfig.socials.medium?.url && (
+            <a
+              href={siteConfig.socials.medium.url}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-emerald-800 hover:text-emerald-300 transition-colors duration-200"
+            >
+              med
+            </a>
+          )}
+          {siteConfig.socials.instagram?.url && (
+            <a
+              href={siteConfig.socials.instagram.url}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-emerald-800 hover:text-[#E4405F] transition-colors duration-200"
+            >
+              ig
+            </a>
+          )}
           <a
             href={siteConfig.socials.email.url}
             className="text-emerald-800 hover:text-[#EA4335] transition-colors duration-200"

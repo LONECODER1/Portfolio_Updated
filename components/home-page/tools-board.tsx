@@ -14,7 +14,7 @@ import {
 } from "@/components/ui/dialog";
 
 // 🎨 React Icons Imports
-import { SiGithub, SiDiscord, SiGmail, SiX } from "react-icons/si";
+import { SiGithub, SiDiscord, SiGmail, SiX, SiMedium, SiInstagram } from "react-icons/si";
 
 type RailItem = {
   label: string;
@@ -54,6 +54,26 @@ const rail: RailItem[] = [
     link: siteConfig.socials.linkedin.url,
     hoverColor: "hover:text-[#0A66C2]",
   },
+  ...(siteConfig.socials.medium?.url
+    ? [
+        {
+          label: "Medium",
+          icon: <SiMedium size={20} />,
+          link: siteConfig.socials.medium.url,
+          hoverColor: "hover:text-emerald-300",
+        },
+      ]
+    : []),
+  ...(siteConfig.socials.instagram?.url
+    ? [
+        {
+          label: "Instagram",
+          icon: <SiInstagram size={20} className="text-[#E4405F]" />,
+          link: siteConfig.socials.instagram.url,
+          hoverColor: "hover:text-[#E4405F]",
+        },
+      ]
+    : []),
 ];
 
 export default function ToolsBoard() {
