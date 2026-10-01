@@ -2,6 +2,7 @@
 
 import React from "react";
 import { AlertDialog, AlertDialogContent, AlertDialogHeader, AlertDialogTitle, AlertDialogTrigger, AlertDialogCancel } from "@/components/ui/alert-dialog";
+import { ExternalLink } from "lucide-react";
 
 
 const hubItems = [
@@ -100,7 +101,23 @@ function AchievementsOnly() {
             <h3 className="font-semibold text-emerald-50 font-mono text-sm">{item.title}</h3>
             <span className="text-xs text-emerald-700 font-mono ml-auto">{item.year}</span>
           </div>
-          <p className="text-emerald-700 text-xs font-mono">{item.subtitle}</p>
+          <div className="flex items-center justify-between gap-2 mt-1">
+            <div className="flex flex-col">
+              {item.organizer && <span className="text-emerald-400 text-[11px] font-mono font-medium">{item.organizer}</span>}
+              <p className="text-emerald-700 text-xs font-mono">{item.subtitle}</p>
+            </div>
+            {item.link && (
+              <a
+                href={item.link}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-1 px-2 py-0.5 rounded bg-emerald-950/60 border border-emerald-900/60 text-emerald-400 hover:text-emerald-300 text-[11px] font-mono shrink-0 transition-colors"
+              >
+                <ExternalLink size={10} />
+                <span>Link</span>
+              </a>
+            )}
+          </div>
         </div>
       ))}
     </div>

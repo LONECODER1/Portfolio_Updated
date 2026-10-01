@@ -6,7 +6,7 @@ import { Container, Section } from "@/components/craft";
 import { Badge } from "@/components/ui/badge";
 import { TechBadge } from "@/components/tech-badge";
 import { motion } from "framer-motion";
-import { Calendar, Trophy, Rocket, Code, Award, ArrowLeft } from "lucide-react";
+import { Calendar, Trophy, Rocket, Code, Award, ArrowLeft, Building2, ExternalLink } from "lucide-react";
 import { achievementsData } from "@/constants";
 
 const getAchievementIcon = (type: string) => {
@@ -74,14 +74,31 @@ export default function AchievementsPage() {
                   </div>
                   <div className="flex flex-wrap items-center gap-x-4 gap-y-2 text-zinc-400 font-medium">
                     <span className="text-zinc-200">{achievement.subtitle}</span>
+                    {achievement.organizer && (
+                      <div className="flex items-center gap-1.5 text-sm text-emerald-400 font-mono">
+                        <Building2 size={14} className="text-emerald-500" />
+                        <span>{achievement.organizer}</span>
+                      </div>
+                    )}
                   </div>
                 </div>
 
-                <div className="flex flex-col md:items-end gap-1 text-zinc-500 text-sm font-medium">
+                <div className="flex flex-row md:flex-col md:items-end gap-2.5 text-zinc-500 text-sm font-medium">
                   <div className="flex items-center gap-2">
                     <Calendar size={14} />
                     <span>{achievement.year}</span>
                   </div>
+                  {achievement.link && (
+                    <a
+                      href={achievement.link}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-emerald-950/60 border border-emerald-900/60 text-emerald-400 hover:text-emerald-300 hover:border-emerald-700 text-xs font-mono transition-colors"
+                    >
+                      <ExternalLink size={12} />
+                      <span>Certificate</span>
+                    </a>
+                  )}
                 </div>
               </div>
 

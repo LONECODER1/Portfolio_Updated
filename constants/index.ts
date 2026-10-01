@@ -64,8 +64,10 @@ export interface AchievementItem {
   id: number;
   title: string;
   subtitle: string;
+  organizer?: string;
   year: string;
   type: string;
+  link?: string;
   technologies: string[];
   description: string[];
 }
@@ -225,38 +227,55 @@ export const experienceData: ExperienceItem[] = [
 export const achievementsData: AchievementItem[] = [
   {
     id: 1,
-    title: "Hackathon Grand Finalist",
-    subtitle: "National Innovation Challenge",
+    title: "Shaastra Programming Contest",
+    subtitle: "National Level Finalist",
+    organizer: "IIT Madras",
     year: "2024",
     type: "Finalist",
-    technologies: ["Python", "Machine Learning", "Streamlit"],
+    link: "https://drive.google.com/file/d/1XEzsRA5P9DpS9KPpWll7Y5O2B7MD2XbC/view",
+    technologies: ["C++", "DSA", "Algorithms", "Optimization"],
     description: [
-      "Built an automated optimization pipeline addressing real-world civic challenges.",
-      "Presented working prototypes to an expert panel of industry judges.",
+      "Finalist at national level; ranked in top 1% among 15,000+ participants.",
     ],
   },
   {
     id: 2,
-    title: "Hackathon Winner",
-    subtitle: "AI & Web Innovation Summit",
+    title: "OPCODE Open Spring Fest",
+    subtitle: "Rank 7 - Open Source Contribution",
+    organizer: "IIIT Bhagalpur Open Source Community",
     year: "2025",
-    type: "Winner",
-    technologies: ["TypeScript", "FastAPI", "React", "AI/LLMs"],
+    type: "Contributor",
+    link: "https://drive.google.com/file/d/1dFc8RyfkQLqzSQGdlOXFd3cl7xZBqxhq/view",
+    technologies: ["Git", "GitHub", "Full Stack", "Gen AI"],
     description: [
-      "Awarded 1st place for developing an intelligent assistive workflow application.",
-      "Integrated end-to-end authentication, AI processing, and real-time UI dashboards.",
+      "Secured Rank 7 among 400+ participants.",
+      "Contributed to 4 projects with 14 accepted PRs.",
     ],
   },
   {
     id: 3,
-    title: "Open Source Contributor",
-    subtitle: "Developer Community",
-    year: "Active",
-    type: "Contributor",
-    technologies: ["TypeScript", "React", "Node.js", "Python"],
+    title: "Hacktopia 24-Hour Hackathon",
+    subtitle: "1st Position Winner",
+    organizer: "Training & Placement Cell",
+    year: "2025",
+    type: "Winner",
+    link: "https://drive.google.com/file/d/12nGgaR1rW2O4CIU5M6Sxd1zQzK0PLZug/view",
+    technologies: ["Next.js", "TypeScript", "Node.js", "Full Stack", "Agentic AI", "Blockchain"],
     description: [
-      "Actively maintaining and contributing to modern developer tools and open-source packages.",
-      "Sharing technical insights and code repositories with developer communities.",
+      "Led team BUILDANYTHING and secured 1st position among 90+ participating teams.",
+    ],
+  },
+  {
+    id: 4,
+    title: "A2Z DSA Challenge",
+    subtitle: "AlgoZenith Challenge",
+    organizer: "AlgoZenith",
+    year: "2024",
+    type: "Finalist",
+    link: "https://drive.google.com/file/d/1Pl_BzvhJ5E8VHfQloRqZdjbrQaRKn9B2/view",
+    technologies: ["C++", "DSA", "Algorithms", "Problem Solving"],
+    description: [
+      "Achieved 6th rank among 20+ participants in AlgoZenith's A2Z DSA Challenge.",
     ],
   },
 ];
